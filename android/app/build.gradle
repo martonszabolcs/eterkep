@@ -1,4 +1,9 @@
 apply plugin: "com.android.application"
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+project.ext.vectoricons = [
+        iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
+]
+
 
 import com.android.build.OutputFile
 
@@ -98,7 +103,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.eterkep"
+        applicationId "com.marton.eterkep"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

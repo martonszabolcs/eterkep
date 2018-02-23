@@ -1,4 +1,4 @@
-package com.eterkep;
+package com.marton.eterkep;
 
 import android.app.Application;
 

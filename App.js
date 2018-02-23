@@ -1,58 +1,141 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
-  Platform,
+  AppRegistry,
   StyleSheet,
+  StatusBar,
+  Dimensions,
+  Image,
   Text,
-  View
+  View,
+  TouchableOpacity,
+  TouchableHighlight,
+  Switch,
+  Modal,
+  InteractionManager,
+  ScrollView,
+  Platform,
+  BackHandler,
+  Alert
 } from 'react-native';
+//import SplashScreen from 'react-native-splash-screen'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
-type Props = {};
-export default class App extends Component<Props> {
+import {
+  Router,
+  Scene,
+  Actions
+} from 'react-native-router-flux';
+
+import SplashScreen from 'react-native-smart-splash-screen';
+
+
+
+
+import login from './scenes/login';
+import home from './scenes/home';
+
+
+
+export default class Flux extends Component {
+  constructor(props) {
+    super(props);
+    console.log('component created');
+    this.state={
+    }
+  }
+  componentDidMount(){
+       console.log('myView loaded');
+      /*if (Platform.OS === 'android'){
+        SplashScreen.close({
+        animationType: SplashScreen.animationType.scale,
+        duration: 850,
+        delay: 500,
+     })}*/
+        BackHandler.addEventListener('hardwareBackPress', this.backPressed);
+        console.log('addEventListener')
+             console.log(Actions.state.index)
+
+      }
+        componentWillUnmount() {
+      BackHandler.removeEventListener('hardwareBackPress', this.backPressed);
+    }
+   
+  backPressed = () => {
+    if (Actions.state.index != 0) {
+    Actions.pop();
+    return true;
+  } else {
+    Alert.alert(
+  'Alkalmazás bezárása',
+  'Biztosan bezárod az alkalmazást?',
+  [
+    {text: 'Mégse', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+    {text: 'Igen', onPress: () => BackHandler.exitApp()},
+  ],
+  { cancelable: false }
+)
+  return true;
+}
+};
+    
+
+
+       //SplashScreen.hide();
+   
+   
+   handleLogout(){
+       console.log('User logged out');
+   }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+    // Lekerekitett sarkok pozicioja
+        var {height, width} = Dimensions.get('window');
+        var cornerLeft = width - 10;  // 10 is the width/height of the corner
+        var cornerTop = height - 10;
+
+        return (
+            <View style={{backgroundColor: 'black', flex:1, paddingTop: 10, flexDirection: 'column'}}>
+                {/* Lekerekitett sarok */}
+                <View style={[styles.roundedCorner, {top: 10, left: 0}]}>
+                    <Image style={styles.roundedCornerImage} source={require('./src/images/style/corner-top-left.png')} />
+                </View>
+                <View style={[styles.roundedCorner, {top: 10, left: cornerLeft}]}>
+                    <Image style={styles.roundedCornerImage} source={require('./src/images/style/corner-top-right.png')} />
+                </View>
+                <View style={[styles.roundedCorner, {top: cornerTop, left: 0}]}>
+                    <Image style={styles.roundedCornerImage} source={require('./src/images/style/corner-bottom-left.png')} />
+                </View>
+                <View style={[styles.roundedCorner, {top: cornerTop, left: cornerLeft}]}>
+                    <Image style={styles.roundedCornerImage} source={require('./src/images/style/corner-bottom-right.png')} />
+                </View>
+
+      <StatusBar hidden={true} transparent={true}/>
+
+        <Router>
+          <Scene key="root" hideNavBar={true} duration={10}>
+            <Scene key="login" hideNavBar={true} component={login} title="E-Térkép" initial={true}
+            onRight={() => { BackHandler.exitApp() }} rightTitle="Kilépés"/>
+            <Scene key="home" component={home} title="home"/>
+          </Scene>
+        </Router>
+
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+
+    // lekerekitett sarkok
+    roundedCorner: {
+        width: 10,
+        height: 10,
+        position: 'absolute',
+        zIndex: 10
+    },
+
+    roundedCornerImage: {
+        width: 10,
+        height: 10
+    }
 });
