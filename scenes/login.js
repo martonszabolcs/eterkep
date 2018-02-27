@@ -127,7 +127,7 @@ export default class Login extends Component<{}> {
         
         <View style={{justifyContent:'center', alignItems:'center', marginTop:10}}>
           <TouchableOpacity onPress={ () => this.validate() }>
-            <View style={{height:40, backgroundColor:'#fcba50', width:width-40, justifyContent:'center', alignItems:'center', borderRadius:20}}>
+            <View style={{height:40, backgroundColor:'#2E348B', width:width-40, justifyContent:'center', alignItems:'center', borderRadius:20}}>
               <Text style={{color:'white'}}>{'Bejelentkezés'}</Text>
             </View>
           </TouchableOpacity>

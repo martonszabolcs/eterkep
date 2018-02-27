@@ -45,12 +45,12 @@ export default class Flux extends Component {
   }
   componentDidMount(){
        console.log('myView loaded');
-      /*if (Platform.OS === 'android'){
+      if (Platform.OS === 'android'){
         SplashScreen.close({
         animationType: SplashScreen.animationType.scale,
-        duration: 850,
-        delay: 500,
-     })}*/
+        duration: 1500,
+        delay: 1000,
+     })}
         BackHandler.addEventListener('hardwareBackPress', this.backPressed);
         console.log('addEventListener')
              console.log(Actions.state.index)
