@@ -17,7 +17,9 @@ import {
   WebView,
   ListView,
   AsyncStorage,
-  TextInput
+  TextInput,
+  Easing,
+  DrawerLayoutAndroid
 } from 'react-native';
 
 
@@ -27,7 +29,14 @@ import {
   Actions
 } from 'react-native-router-flux';
 
+
 import SearchBar from 'react-native-searchbar';
+import Swiper from 'react-native-swiper';
+import Drawer from 'react-native-drawer-menu';
+import SideBar from './sidebar';
+
+    var {height, width} = Dimensions.get('window');
+
 
 const items = [
   1337,
@@ -57,7 +66,7 @@ const items = [
 const instructions = Platform.select({
 });
 
-export default class Login extends Component<{}> {
+export default class Home extends Component<{}> {
 
   constructor(props) {
     console.log(props);
@@ -65,12 +74,20 @@ export default class Login extends Component<{}> {
     this.state={
       text:'',
       password:'',
-      results:''
+      results:'',
+      menuOpen: false,
+      modalVisible: false,
+      index: 0,
+      canavasOpen: this.props.canavasOpen
       }
-    }
 
+    }
+handleSwipeIndexChange (index) {
+    this.setState({ index });
+  };
 
     componentDidMount() {
+      
    
     }
 
@@ -78,6 +95,10 @@ export default class Login extends Component<{}> {
 
 
        componentWillMount() {
+        console.log(this.state.canavasOpen);
+       if (this.state.canavasOpen === 1){
+        this.props.handleMenu();
+      }
         
     }
     _handleResults(results) {
@@ -86,14 +107,70 @@ export default class Login extends Component<{}> {
 
 
 
+handleMenu() {
+  const {menuOpen} = this.state
+  this.setState({
+    menuOpen: !menuOpen
+  })
+}
+
+
+toggleModal(visible) {
+      this.setState({ modalVisible: visible });
+   }
+
+
   render() {
     console.log(this.state.results)
     var {height, width} = Dimensions.get('window');
     var iWidth = width/240
+    var cornerLeft = width - 10;  // 10 is the width/height of the corner
+        var cornerTop = height - 10;
+
+
+        var navigationView = (
+   
+               <SideBar/>
+
+    )
+
 
     
     return (
       <View style={styles.container}>
+      <DrawerLayoutAndroid
+      ref="DRAWER"
+      drawerWidth={width/2}
+      drawerPosition={DrawerLayoutAndroid.positions.Left}
+      renderNavigationView={() => navigationView}>
+      <Modal animationType = {"slide"} transparent = {false}
+               visible = {this.state.modalVisible}
+               onRequestClose = {() => { console.log("Modal has been closed.") } }>
+                
+
+               <View style = {styles.modal}>
+             
+               <View style = {{height:height/6, backgroundColor:'#2E348B', justifyContent:'center', alignItems:'center'}}>
+                <Text style = {styles.text}>HELP</Text>
+               </View>
+
+               <View style = {{flex:1, backgroundColor:'white', justifyContent:'center', alignItems:'center'}}>
+                <Text style={{color:'black'}}>HELP</Text>
+               </View>
+
+
+
+               <View style = {{position:'absolute', bottom:height/20, left:10, right:10, justifyContent:'center', alignItems:'center'}}>
+               <TouchableOpacity onPress = {() => {
+                  this.toggleModal(!this.state.modalVisible)}}>
+            <View style={{height:40, backgroundColor:'#2E348B', width:width-40, justifyContent:'center', alignItems:'center', borderRadius:20}}>
+              <Text style={{color:'white'}}>{'Bezárás'}</Text>
+            </View>
+          </TouchableOpacity>
+               </View>
+               </View>
+            </Modal>
+
       
       <View style={{flex:1}}>
       
@@ -108,105 +185,54 @@ export default class Login extends Component<{}> {
 
 
       <View style={{flex:2, flexDirection:'row', justifyContent:'space-around'}}>
-        <View style={{width:width/6, backgroundColor:'#fcba50', justifyContent:'center', alignItems:'center', borderRadius:20,}}>
-          <Text style={styles.felirat2}>{'H'}</Text>
-          <Text style={styles.felirat2}>{'U'}</Text>
-          <Text style={styles.felirat2}>{'M'}</Text>
-          <Text style={styles.felirat2}>{'Á'}</Text>
-          <Text style={styles.felirat2}>{'N'}</Text>
-          <Text style={styles.felirat2}>{''}</Text>
-          <Text style={styles.felirat2}>{'E'}</Text>
-          <Text style={styles.felirat2}>{'R'}</Text>
-          <Text style={styles.felirat2}>{'Ő'}</Text>
-          <Text style={styles.felirat2}>{'F'}</Text>
-          <Text style={styles.felirat2}>{'O'}</Text>
-          <Text style={styles.felirat2}>{'R'}</Text>
-          <Text style={styles.felirat2}>{'R'}</Text>
-          <Text style={styles.felirat2}>{'Á'}</Text>
-          <Text style={styles.felirat2}>{'S'}</Text>
-        </View>
-        <View style={{width:width/6, backgroundColor:'#7ec7ce', justifyContent:'center', alignItems:'center', borderRadius:20,}}>
-          <Text style={styles.felirat2}>{'T'}</Text>
-          <Text style={styles.felirat2}>{'Á'}</Text>
-          <Text style={styles.felirat2}>{'R'}</Text>
-          <Text style={styles.felirat2}>{'G'}</Text>
-          <Text style={styles.felirat2}>{'Y'}</Text>
-          <Text style={styles.felirat2}>{'I'}</Text>
-          <Text style={styles.felirat2}>{''}</Text>
-          <Text style={styles.felirat2}>{'E'}</Text>
-          <Text style={styles.felirat2}>{'R'}</Text>
-          <Text style={styles.felirat2}>{'Ő'}</Text>
-          <Text style={styles.felirat2}>{'F'}</Text>
-          <Text style={styles.felirat2}>{'O'}</Text>
-          <Text style={styles.felirat2}>{'R'}</Text>
-          <Text style={styles.felirat2}>{'R'}</Text>
-          <Text style={styles.felirat2}>{'Á'}</Text>
-          <Text style={styles.felirat2}>{'S'}</Text>
-        </View>
-        <View style={{width:width/6, backgroundColor:'#c7eb67', justifyContent:'center', alignItems:'center', borderRadius:20,}}>
-          <Text style={styles.felirat2}>{'S'}</Text>
-          <Text style={styles.felirat2}>{'Z'}</Text>
-          <Text style={styles.felirat2}>{'O'}</Text>
-          <Text style={styles.felirat2}>{'L'}</Text>
-          <Text style={styles.felirat2}>{'G'}</Text>
-          <Text style={styles.felirat2}>{'Á'}</Text>
-          <Text style={styles.felirat2}>{'L'}</Text>
-          <Text style={styles.felirat2}>{'T'}</Text>
-          <Text style={styles.felirat2}>{'A'}</Text>
-          <Text style={styles.felirat2}>{'T'}</Text>
-          <Text style={styles.felirat2}>{'Á'}</Text>
-          <Text style={styles.felirat2}>{'S'}</Text>
-        </View>
-        <View style={{width:width/4, marginTop:height/3, backgroundColor:'#dd5758', justifyContent:'center', alignItems:'center', borderRadius:20,}}>
-          <Text style={[styles.felirat2, {top:-height/20}]}>{'I'}</Text>
-          <Text style={[styles.felirat2, {top:-height/20}]}>{'N'}</Text>
-          <Text style={[styles.felirat2, {top:-height/20}]}>{'F'}</Text>
-          <Text style={[styles.felirat2, {top:-height/20}]}>{'O'}</Text>
-        </View>
+        <Image
+              source={require('../src/homeman.png')}
+              style={{width:width/2, height:width/2}}/>
       </View>
       
+    </DrawerLayoutAndroid>
 
       <View style={[styles.menu, {width:width, height:width/5, justifyContent:'space-around'}]}>
-        <TouchableOpacity  onPress={()=> Actions.home()
-          }>
-          <View style={[styles.menu1, {backgroundColor:'#fcba50' , borderRadius:100}]}>
+          <TouchableOpacity onPress={ () => this.refs['DRAWER'].openDrawer()  }> 
+          <View style={[styles.menu1]}>
            <Image
-              source={require('../src/human.png')}
+              source={require('../src/menu/menu.png')}
               style={{width:width/6, height:width/6}}/>
-          <Text style={styles.felirat}>{'HUMÁN'}</Text>
           </View>
           </TouchableOpacity>
           
 
-        <TouchableOpacity  onPress={()=> Actions.home()}>
-          <View style={[styles.menu1, {backgroundColor:'#7ec7ce' , borderRadius:100}]}>
+        <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 1})}>
+          <View style={[styles.menu1]}>
             <Image
-              source={require('../src/material.png')}
+              source={require('../src/menu/hum.png')}
               style={{width:width/6, height:width/6}}/>
-          <Text style={styles.felirat}>{'TÁRGYI'}</Text>
-
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity  onPress={()=> Actions.home()}>
-          <View style={[styles.menu1, {backgroundColor:'#c7eb67' , borderRadius:100}]}>
+          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 2})}>
+          <View style={[styles.menu1]}>
             <Image
-              source={require('../src/service.png')}
+              source={require('../src/menu/targy.png')}
               style={{width:width/6, height:width/6}}/>
-          <Text style={styles.felirat}>{'SZOLGÁLTATÁS'}</Text>
-
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity  onPress={()=> Actions.home()}>
-          <View style={{width:width/4, height:width/4, borderRadius:100, justifyContent:'center', backgroundColor:'#dd5758', alignItems:'center'}}>
+          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 3})}>
+          <View style={[styles.menu1]}>
             <Image
-              source={require('../src/info.png')}
+              source={require('../src/menu/szolg.png')}
               style={{width:width/6, height:width/6}}/>
-          <Text style={styles.felirat}>{'INFO'}</Text>
-
           </View>
-            
+          </TouchableOpacity>
+          
+           <TouchableOpacity onPress = {() => {
+            this.toggleModal(!this.state.modalVisible)}}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/inf.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
           </TouchableOpacity>
 
         </View>
@@ -249,6 +275,20 @@ const styles = StyleSheet.create({
     flex: 1,
     position:'absolute',
     resizeMode: 'cover', // or 'stretch'
-  }
+  },
+  modal: {
+      flex:1,
+      margin:10,
+      borderRadius:10,
+      borderWidth:2,
+      borderColor:'black',
+      backgroundColor: 'white',
+    },
+   text: {
+      textAlign:'center',
+      color: 'white',
+      fontSize:40,
+       fontWeight: 'bold', 
+   }
   })
   

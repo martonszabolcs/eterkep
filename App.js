@@ -33,6 +33,9 @@ import SplashScreen from 'react-native-smart-splash-screen';
 
 import login from './scenes/login';
 import home from './scenes/home';
+import bongeszes from './scenes/bongeszes';
+import adatlap from './scenes/adatlap';
+
 
 
 
@@ -44,6 +47,7 @@ export default class Flux extends Component {
     }
   }
   componentDidMount(){
+    Actions.reset('login');
        console.log('myView loaded');
       if (Platform.OS === 'android'){
         SplashScreen.close({
@@ -94,12 +98,12 @@ export default class Flux extends Component {
         var cornerTop = height - 10;
 
         return (
-            <View style={{backgroundColor: 'black', flex:1, paddingTop: 10, flexDirection: 'column'}}>
+            <View style={{backgroundColor: 'black', flex:1, paddingTop: 25, flexDirection: 'column'}}>
                 {/* Lekerekitett sarok */}
-                <View style={[styles.roundedCorner, {top: 10, left: 0}]}>
+                <View style={[styles.roundedCorner, {top: 25, left: 0}]}>
                     <Image style={styles.roundedCornerImage} source={require('./src/images/style/corner-top-left.png')} />
                 </View>
-                <View style={[styles.roundedCorner, {top: 10, left: cornerLeft}]}>
+                <View style={[styles.roundedCorner, {top: 25, left: cornerLeft}]}>
                     <Image style={styles.roundedCornerImage} source={require('./src/images/style/corner-top-right.png')} />
                 </View>
                 <View style={[styles.roundedCorner, {top: cornerTop, left: 0}]}>
@@ -113,9 +117,11 @@ export default class Flux extends Component {
 
         <Router>
           <Scene key="root" hideNavBar={true} duration={10}>
-            <Scene key="login" hideNavBar={true} component={login} title="E-Térkép" initial={true}
-            onRight={() => { BackHandler.exitApp() }} rightTitle="Kilépés"/>
-            <Scene key="home" component={home} title="home"/>
+            <Scene key="login" hideNavBar={true} component={login} title="E-Térkép" 
+            onRight={() => { BackHandler.exitApp() }} rightTitle="Kilépés"initial={true} />
+            <Scene key="home" component={home} title="home" />
+            <Scene key="bongeszes" component={bongeszes} title="bongeszes" />
+            <Scene key="adatlap" component={adatlap} title="adatlap" />
           </Scene>
         </Router>
 
