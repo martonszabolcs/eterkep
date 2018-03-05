@@ -34,10 +34,10 @@ import SearchBar from 'react-native-searchbar';
 import Swiper from 'react-native-swiper';
 import Drawer from 'react-native-drawer-menu';
 import SideBar from './sidebar';
-import Search from './search';
 
     var {height, width} = Dimensions.get('window');
 
+var people = require('./people.json');
 
 
 
@@ -45,7 +45,7 @@ import Search from './search';
 const instructions = Platform.select({
 });
 
-export default class Home extends Component<{}> {
+export default class FindReszletes extends Component<{}> {
 
   constructor(props) {
     console.log(props);
@@ -57,8 +57,11 @@ export default class Home extends Component<{}> {
       menuOpen: false,
       modalVisible: false,
       index: 0,
-      canavasOpen: this.props.canavasOpen
+      canavasOpen: this.props.canavasOpen,
+      keywords: this.props.keywords,
+      user: this.props.user
       }
+
 
     }
 handleSwipeIndexChange (index) {
@@ -151,16 +154,78 @@ toggleModal(visible) {
             </Modal>
 
       
-      <View style={{flex:1}}>
-      
-        <Search/>
-        </View>
+      <View style={{height:height/10, flexDirection:'row', marginTop:5, justifyContent:'space-between',alignItems:'center'}}>
+      <TouchableOpacity onPress={ () => Actions.find({keywords: this.state.keywords})  }>
+          <View style={[styles.menu1, {justifyContent:'center', alignItems:'center',  backgroundColor:'white', height:width/9, width:width/9, borderRadius:30, marginLeft:5, }]}>
+           <Image
+              source={require('../src/backs.png')}
+              style={{width:width/12, height:width/12}}/>
+          </View>
+          </TouchableOpacity>
+            <View style = {{backgroundColor:'white', justifyContent:'center', alignItems:'center', width:width/2}}>
+                <Text numberOfLines={2} style={{color:'black', fontSize:18, textAlign:'center'}}>{this.state.user.Név}</Text>
+               </View>
+               <View style={[styles.menu1, {justifyContent:'center', alignItems:'center',  backgroundColor:'white', height:width/9, width:width/9, borderRadius:30, marginLeft:5, }]}/>
+     </View>
 
+      <View style={{top:-width/8}}>
+        <ScrollView  removeClippedSubviews={false} style={{backgroundColor:'transparent', marginTop:height/10}}>
+               <View style={{backgroundColor:"#D3D3D3", justifyContent:'center', alignItems:'center', width:width, borderRadius:10}}>
+                <Image
+                  resizeMode='cover'
+                  source={{uri:this.state.user.Fénykép}}
+                  style={{width:width, resizeMode: 'cover',  height:height/3, zIndex:100, borderRadius:10}}/>
+               <View style={{backgroundColor:"white", borderRadius:30, width:width, padding:10}}>
 
-      <View style={{flex:2, flexDirection:'row', justifyContent:'space-around'}}>
-        <Image
-              source={require('../src/homeman.png')}
-              style={{width:width/2, height:width/2}}/>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                  E-mail: {this.state.user.Email}
+                </Text>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                  Szervezet: {this.state.user.Szervezet}
+                </Text>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                  Település: {this.state.user.Település}
+                </Text>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                  Végzettség: {this.state.user.Végzettség}
+                </Text>
+              </View> 
+
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:20}]}>
+                  Szakterület:
+                </Text>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                  {this.state.user.Szakterület}
+                </Text>
+                
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:20}]}>
+                  Tárgyi erőforrás, amit megosztok:
+                </Text>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                  {this.state.user.Targyi}
+                </Text>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:20}]}>
+                  Humán erőforrás, amit megosztok:
+                </Text>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                 {this.state.user.Humán}
+                </Text>
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:20}]}>
+                  Szolgáltatás, amit megosztok:
+                </Text> 
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                  {this.state.user.Szolgáltatás}
+                </Text> 
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:20}]}>
+                  Személyes példák:
+                </Text> 
+                <Text  style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'left', fontSize:14}]}>
+                  {this.state.user.Személyes}
+                </Text>
+              </View> 
+              <View style={{height:width/3}}/> 
+
+        </ScrollView> 
       </View>
       
     </DrawerLayoutAndroid>
@@ -262,6 +327,11 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize:40,
        fontWeight: 'bold', 
-   }
+   },
+   list: {
+   flexDirection: 'row',
+        flexWrap: 'wrap',
+    justifyContent:'space-around'
+  },
   })
   

@@ -34,10 +34,10 @@ import SearchBar from 'react-native-searchbar';
 import Swiper from 'react-native-swiper';
 import Drawer from 'react-native-drawer-menu';
 import SideBar from './sidebar';
-import Search from './search';
 
     var {height, width} = Dimensions.get('window');
 
+var people = require('./people.json');
 
 
 
@@ -45,7 +45,7 @@ import Search from './search';
 const instructions = Platform.select({
 });
 
-export default class Home extends Component<{}> {
+export default class Find extends Component<{}> {
 
   constructor(props) {
     console.log(props);
@@ -57,8 +57,12 @@ export default class Home extends Component<{}> {
       menuOpen: false,
       modalVisible: false,
       index: 0,
-      canavasOpen: this.props.canavasOpen
+      canavasOpen: this.props.canavasOpen,
+      keywords: this.props.keywords,
+      dataSource: people
       }
+    this.dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1.guid != r2.guid});    
+
 
     }
 handleSwipeIndexChange (index) {
@@ -151,16 +155,54 @@ toggleModal(visible) {
             </Modal>
 
       
-      <View style={{flex:1}}>
-      
-        <Search/>
-        </View>
+      <View style={{height:height/10, flexDirection:'row', marginTop:5, justifyContent:'space-between',alignItems:'center'}}>
+      <TouchableOpacity onPress={ () => Actions.home()  }>
+          <View style={[styles.menu1, {justifyContent:'center', alignItems:'center',  backgroundColor:'white', height:width/9, width:width/9, borderRadius:30, marginLeft:5, }]}>
+           <Image
+              source={require('../src/backs.png')}
+              style={{width:width/12, height:width/12}}/>
+          </View>
+          </TouchableOpacity>
+            <View style = {{backgroundColor:'white', justifyContent:'center', alignItems:'center', width:width/2}}>
+                <Text numberOfLines={2} style={{color:'black', fontSize:18, textAlign:'center'}}>{this.state.keywords}</Text>
+               </View>
+               <View style={[styles.menu1, {justifyContent:'center', alignItems:'center',  backgroundColor:'white', height:width/9, width:width/9, borderRadius:30, marginLeft:5, }]}/>
+     </View>
 
+      <View style={{flex:1, top:-width/8}}>
+        <ScrollView  removeClippedSubviews={true} style={{backgroundColor:'transparent', marginTop:height/10}}>
+                <ListView
+            dataSource={this.dataSource.cloneWithRows(this.state.dataSource)}
+            enableEmptySections={true}
+            initialListSize={0}
+            contentContainerStyle={styles.list}
+            scrollEnabled={true}
+            pageSize={2}
+            renderRow={ (rowData, sectionID, rowID, highlightRow)=> (
+            <View numberOfLines={1} style={{backgroundColor:'transparent'}}>
+              <View style={{marginTop:10}}>
+              <TouchableOpacity onPress={() => {Actions.findreszletes({ user: rowData, keywords: this.state.keywords})}}>
+              <View style={{backgroundColor:"#D3D3D3", width:width/2-10, height:height/3, borderRadius:10}}>
+                <Image
+                  resizeMode='cover'
+                  source={{uri:rowData.Fénykép}}
+                  style={{width:width/2-10, height:height/6, zIndex:100, borderRadius:10}}/>
+                <Text numberOfLines={2} style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:12}]}>
+                  {rowData.Név} - {rowData.Település}
+                </Text>
+                <Text numberOfLines={4} style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:12}]}>
+                  {rowData.Targyi}
+                </Text>
+              </View>
+              </TouchableOpacity>
 
-      <View style={{flex:2, flexDirection:'row', justifyContent:'space-around'}}>
-        <Image
-              source={require('../src/homeman.png')}
-              style={{width:width/2, height:width/2}}/>
+              </View>
+              </View>
+              )}>
+          </ListView>
+              <View style={{height:100}}/>
+
+        </ScrollView> 
       </View>
       
     </DrawerLayoutAndroid>
@@ -262,6 +304,11 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize:40,
        fontWeight: 'bold', 
-   }
+   },
+   list: {
+   flexDirection: 'row',
+        flexWrap: 'wrap',
+    justifyContent:'space-around'
+  },
   })
   

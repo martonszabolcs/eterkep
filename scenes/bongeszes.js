@@ -32,6 +32,8 @@ import {
 import SearchBar from 'react-native-searchbar';
 import Swiper from 'react-native-swiper';
 import SideBar from './sidebar';
+import Search from './search';
+
 
     var {height, width} = Dimensions.get('window');
 
@@ -371,15 +373,15 @@ var navigationView = (
             </Modal>
 
       
-      <View style={{height:height/10}}>
-      
-        <SearchBar
-  ref={(ref) => this.searchBar = ref}
-  data={items}
-  handleResults={this._handleResults}
-  showOnLoad
-  placeholder='Keresés'
-/>
+      <View style={{height:height/10, flexDirection:'row'}}>
+      <TouchableOpacity onPress={ () => Actions.home()  }>
+          <View style={[styles.menu1, {justifyContent:'center', alignItems:'center',  backgroundColor:'gray', height:width/9, width:width/9, borderRadius:30, marginLeft:5, marginTop:5}]}>
+           <Image
+              source={require('../src/home.png')}
+              style={{width:width/12, height:width/12}}/>
+          </View>
+          </TouchableOpacity>
+        <Search/>
         </View>
          <View style={{height: height/6}}>
         {this.tipusok()}

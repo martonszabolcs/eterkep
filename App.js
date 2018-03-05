@@ -35,6 +35,8 @@ import login from './scenes/login';
 import home from './scenes/home';
 import bongeszes from './scenes/bongeszes';
 import adatlap from './scenes/adatlap';
+import find from './scenes/find';
+import findreszletes from './scenes/findreszletes';
 
 
 
@@ -47,7 +49,7 @@ export default class Flux extends Component {
     }
   }
   componentDidMount(){
-    Actions.reset('login');
+    //Actions.reset('login');
        console.log('myView loaded');
       if (Platform.OS === 'android'){
         SplashScreen.close({
@@ -118,10 +120,12 @@ export default class Flux extends Component {
         <Router>
           <Scene key="root" hideNavBar={true} duration={10}>
             <Scene key="login" hideNavBar={true} component={login} title="E-Térkép" 
-            onRight={() => { BackHandler.exitApp() }} rightTitle="Kilépés"initial={true} />
-            <Scene key="home" component={home} title="home" />
+            onRight={() => { BackHandler.exitApp() }} rightTitle="Kilépés" />
+            <Scene key="home" component={home} title="home" initial={true}/>
             <Scene key="bongeszes" component={bongeszes} title="bongeszes" />
             <Scene key="adatlap" component={adatlap} title="adatlap" />
+            <Scene key="find" component={find} title="find" />
+            <Scene key="findreszletes" component={findreszletes} title="findreszletes" />
           </Scene>
         </Router>
 
