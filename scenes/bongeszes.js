@@ -79,7 +79,8 @@ export default class Bongeszes extends Component<{}> {
       menuOpen: false,
       modalVisible: false,
       index: 0,
-      tipus: this.props.tipus
+      tipus: this.props.tipus,
+      draw: 0
       }
     }
 handleSwipeIndexChange (index) {
@@ -324,6 +325,177 @@ toggleModal(visible) {
       this.setState({ modalVisible: visible });
    }
 
+   menu(){
+    if (this.state.tipus === 1) {
+      return(
+      <View style={[styles.menu, {width:width, height:width/5, justifyContent:'space-around'}]}>
+        <TouchableOpacity onPress={ () => this.refs['DRAWER'].openDrawer()  }>
+          <View style={[styles.menu1]}>
+           <Image
+              source={require('../src/menu/menu.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+          
+
+        <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 1})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/icon_human_current.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 2})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/targy.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 3})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/szolg.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+          
+           <TouchableOpacity onPress = {() => {
+            this.toggleModal(!this.state.modalVisible)}}>
+          <View style={[styles.menu1]}>
+          {this.modal()}
+            
+          </View>
+          </TouchableOpacity>
+
+        </View>
+      )
+    }
+    if (this.state.tipus === 2) {
+      return(
+      <View style={[styles.menu, {width:width, height:width/5, justifyContent:'space-around'}]}>
+        <TouchableOpacity onPress={ () => this.refs['DRAWER'].openDrawer()  }>
+          <View style={[styles.menu1]}>
+           <Image
+              source={require('../src/menu/menu.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+          
+
+        <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 1})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/hum.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 2})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/icon_targy_current.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 3})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/szolg.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+          
+           <TouchableOpacity onPress = {() => {
+            this.toggleModal(!this.state.modalVisible)}}>
+          <View style={[styles.menu1]}>
+            {this.modal()}
+          </View>
+          </TouchableOpacity>
+
+        </View>
+      )
+    }
+
+    if (this.state.tipus === 3) {
+      return(
+      <View style={[styles.menu, {width:width, height:width/5, justifyContent:'space-around'}]}>
+        <TouchableOpacity onPress={ () => this.refs['DRAWER'].openDrawer()}>
+          <View style={[styles.menu1]}>
+           <Image
+              source={require('../src/menu/menu.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+          
+
+        <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 1})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/hum.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 2})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/targy.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 3})}>
+          <View style={[styles.menu1]}>
+            <Image
+              source={require('../src/menu/icon_szolgaltatas_current.png')}
+              style={{width:width/6, height:width/6}}/>
+          </View>
+          </TouchableOpacity>
+          
+           <TouchableOpacity onPress = {() => {
+            this.toggleModal(!this.state.modalVisible)}}>
+          <View style={[styles.menu1]}>
+            {this.modal()}
+          </View>
+          </TouchableOpacity>
+
+        </View>
+      )
+    }
+
+   }
+
+   modal(){
+    if (this.state.modalVisible) {
+      return (
+          <Image
+              source={require('../src/menu/icon_info_current.png')}
+              style={{width:width/6, height:width/6}}/>
+        )
+    } else {
+      return (
+          <Image
+              source={require('../src/menu/inf.png')}
+              style={{width:width/6, height:width/6}}/>
+        )
+    }
+    
+   }
+
+   imageDrawer(){
+    if (this.state.draw === 1) {
+      return ( <Image
+              source={require('../src/menu/icon_menu_current.png')}
+              style={{width:width/6, height:width/6}}/>)
+    } 
+
+
+   }
+
 
   render() {
     console.log(this.state.results)
@@ -375,10 +547,10 @@ var navigationView = (
       
       <View style={{height:height/10, flexDirection:'row'}}>
       <TouchableOpacity onPress={ () => Actions.home()  }>
-          <View style={[styles.menu1, {justifyContent:'center', alignItems:'center',  backgroundColor:'gray', height:width/9, width:width/9, borderRadius:30, marginLeft:5, marginTop:5}]}>
+          <View style={[styles.menu1, {justifyContent:'center', alignItems:'center',  backgroundColor:'white', height:width/9, width:width/9, borderRadius:30, marginLeft:5, marginTop:5}]}>
            <Image
-              source={require('../src/home.png')}
-              style={{width:width/12, height:width/12}}/>
+              source={require('../src/menu/icon_home_.png')}
+              style={{width:width/9, height:width/9}}/>
           </View>
           </TouchableOpacity>
         <Search/>
@@ -399,51 +571,8 @@ var navigationView = (
       
     </DrawerLayoutAndroid>
 
-      <View style={[styles.menu, {width:width, height:width/5, justifyContent:'space-around'}]}>
-        <TouchableOpacity onPress={ () => this.refs['DRAWER'].openDrawer()  }>
-          <View style={[styles.menu1]}>
-           <Image
-              source={require('../src/menu/menu.png')}
-              style={{width:width/6, height:width/6}}/>
-          </View>
-          </TouchableOpacity>
-          
-
-        <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 1})}>
-          <View style={[styles.menu1]}>
-            <Image
-              source={require('../src/menu/hum.png')}
-              style={{width:width/6, height:width/6}}/>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 2})}>
-          <View style={[styles.menu1]}>
-            <Image
-              source={require('../src/menu/targy.png')}
-              style={{width:width/6, height:width/6}}/>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity  onPress={()=> Actions.bongeszes({tipus: 3})}>
-          <View style={[styles.menu1]}>
-            <Image
-              source={require('../src/menu/szolg.png')}
-              style={{width:width/6, height:width/6}}/>
-          </View>
-          </TouchableOpacity>
-          
-           <TouchableOpacity onPress = {() => {
-            this.toggleModal(!this.state.modalVisible)}}>
-          <View style={[styles.menu1]}>
-            <Image
-              source={require('../src/menu/inf.png')}
-              style={{width:width/6, height:width/6}}/>
-          </View>
-          </TouchableOpacity>
-
-        </View>
-
+    {this.menu()}
+      
       </View>
     );
   }

@@ -6,8 +6,10 @@ var data = require('./data.json');
 import {
   Router,
   Scene,
-  Actions
+  Actions,
+  Dimensions
 } from 'react-native-router-flux';
+
 
 export default class Search extends Component {
  
@@ -95,6 +97,7 @@ export default class Search extends Component {
  }
  
   render() {
+
     if (this.state.isLoading) {
       return (
         <View style={{flex: 1, paddingTop: 20}}>
@@ -108,11 +111,12 @@ export default class Search extends Component {
       <View style={styles.MainContainer}>
  
       <TextInput 
-       style={styles.TextInputStyleClass}
+       style={[styles.TextInputStyleClass, { width: 300-20}]}
        onChangeText={(text) => this.SearchFilterFunction(text)}
        value={this.state.text}
        underlineColorAndroid='transparent'
        placeholder="Keresés"
+       alignSelf= 'center'
         />
  
         {this.list()}

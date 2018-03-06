@@ -29,6 +29,12 @@ import {
   Actions
 } from 'react-native-router-flux';
 
+import {
+    CachedImage,
+    ImageCacheProvider
+} from 'react-native-cached-image';
+
+
 
 import SearchBar from 'react-native-searchbar';
 import Swiper from 'react-native-swiper';
@@ -183,7 +189,7 @@ toggleModal(visible) {
               <View style={{marginTop:10}}>
               <TouchableOpacity onPress={() => {Actions.findreszletes({ user: rowData, keywords: this.state.keywords})}}>
               <View style={{backgroundColor:"#D3D3D3", width:width/2-10, height:height/3, borderRadius:10}}>
-                <Image
+                <CachedImage
                   resizeMode='cover'
                   source={{uri:rowData.Fénykép}}
                   style={{width:width/2-10, height:height/6, zIndex:100, borderRadius:10}}/>
@@ -191,7 +197,7 @@ toggleModal(visible) {
                   {rowData.Név} - {rowData.Település}
                 </Text>
                 <Text numberOfLines={4} style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:12}]}>
-                  {rowData.Targyi}
+                  {rowData.Szakterület}
                 </Text>
               </View>
               </TouchableOpacity>
@@ -265,7 +271,7 @@ const styles = StyleSheet.create({
   menu: {
     position:'absolute',
     bottom:0,
-    backgroundColor:"white",
+    backgroundColor:"transparent",
     flexDirection:'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -282,7 +288,7 @@ const styles = StyleSheet.create({
     fontSize:10,
   },
   menu1: {
-    backgroundColor:'white',
+    backgroundColor:'transparent',
     justifyContent:'center',
     alignItems:'center'
   },
