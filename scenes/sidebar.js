@@ -68,7 +68,13 @@ export default class Sidebar extends Component<{}> {
     </View>
 
 
-     <TouchableOpacity  onPress={()=> Actions.login()}>
+     <TouchableOpacity  onPress={()=> Actions.adatlapok()}>
+          <View style={{height: height/10, margin:10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Adatlapok'}</Text>
+          </View>
+          </TouchableOpacity> 
+
+          <TouchableOpacity  onPress={()=> Actions.login()}>
           <View style={{height: height/10, margin:10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Kijelentkezés'}</Text>
           </View>

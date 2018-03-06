@@ -37,6 +37,7 @@ import bongeszes from './scenes/bongeszes';
 import adatlap from './scenes/adatlap';
 import find from './scenes/find';
 import findreszletes from './scenes/findreszletes';
+import adatlapok from './scenes/adatlapok';
 
 
 
@@ -119,13 +120,14 @@ export default class Flux extends Component {
 
         <Router>
           <Scene key="root" hideNavBar={true} duration={10}>
-            <Scene key="login" hideNavBar={true} component={login} title="E-Térkép" 
+            <Scene key="login" hideNavBar={true} component={login} initial={true} title="E-Térkép" 
             onRight={() => { BackHandler.exitApp() }} rightTitle="Kilépés" />
-            <Scene key="home" component={home} title="home" initial={true}/>
+            <Scene key="home" component={home} title="home" />
             <Scene key="bongeszes" component={bongeszes} title="bongeszes" />
             <Scene key="adatlap" component={adatlap} title="adatlap" />
             <Scene key="find" component={find} title="find" />
             <Scene key="findreszletes" component={findreszletes} title="findreszletes" />
+            <Scene key="adatlapok" component={adatlapok} title="adatlapok" />
           </Scene>
         </Router>
 
