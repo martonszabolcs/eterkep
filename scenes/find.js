@@ -79,23 +79,27 @@ handleSwipeIndexChange (index) {
   };
 
     componentDidMount() {
-      console.log(_.filter(people, { Keywords: 'Helyszín, logisztika' }));
 
    
     }
 
     SearchFilterFunction(text){
-     keywords = this.state.keywords
-     const newData = this.arrayholder.filter(function(item){
-         const itemData = item.keywords
-         const textData = text
-         return itemData.indexOf(textData) > -1
+      newData = []
+
+      console.log(people);
+      console.log(this.state.keywords);
+    for (var i = 0; i < people.length; i++) {
+    if (people[i].Keywords.indexOf(this.state.keywords) > -1){
+      console.log(people[i]);
+    newData.push(people[i]);
+
+    }
+    console.log(newData)
+    this.setState({
+         dataSource: newData,
      })
-     this.setState({
-         dataSource: this.state.dataSource.cloneWithRows(newData),
-         text: text
-     })
-     console.log(this.state.dataSource)
+
+  }
  }
  
 
