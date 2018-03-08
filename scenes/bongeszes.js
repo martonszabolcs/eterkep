@@ -139,27 +139,17 @@ leirasokTipus(){
     return(
           <ScrollView>
 
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Humán Lorem ispum st'}</Text>
-            <Image
-              source={require('../src/nyil.png')}
-              style={{width:width/15, height:width/15}}/>
-          </View>
-          </TouchableOpacity>
-          
-
            <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Humán Lorem ispum st'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Tréning, tanácsadás'}</Text>
             <Image
               source={require('../src/nyil.png')}
               style={{width:width/15, height:width/15}}/>
           </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Humán Lorem ispum st'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Projektmenedzsment'}</Text>
             <Image
               source={require('../src/nyil.png')}
               style={{width:width/15, height:width/15}}/>
@@ -168,8 +158,35 @@ leirasokTipus(){
 
 
            <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Humán Lorem ispum st'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Táborszervezés'}</Text>
+            <Image
+              source={require('../src/nyil.png')}
+              style={{width:width/15, height:width/15}}/>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Rendezvényszervezés'}</Text>
+            <Image
+              source={require('../src/nyil.png')}
+              style={{width:width/15, height:width/15}}/>
+          </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Nemzetközi'}</Text>
+            <Image
+              source={require('../src/nyil.png')}
+              style={{width:width/15, height:width/15}}/>
+          </View>
+          </TouchableOpacity> 
+
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Egyéb humán erőforrás'}</Text>
             <Image
               source={require('../src/nyil.png')}
               style={{width:width/15, height:width/15}}/>
@@ -188,8 +205,8 @@ leirasokTipus(){
           <ScrollView>
 
       <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Tárgyi Lorem ispum st'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Elektronika'}</Text>
             <Image
               source={require('../src/nyil2.png')}
               style={{width:width/15, height:width/15}}/>
@@ -198,16 +215,16 @@ leirasokTipus(){
           
 
            <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Tárgyi Lorem ispum st'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Bútor, irodai eszköz'}</Text>
             <Image
               source={require('../src/nyil2.png')}
               style={{width:width/15, height:width/15}}/>
           </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Tárgyi Lorem ispum st'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Játék, sport és tréning eszköz'}</Text>
             <Image
               source={require('../src/nyil2.png')}
               style={{width:width/15, height:width/15}}/>
@@ -216,17 +233,8 @@ leirasokTipus(){
 
 
            <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Tárgyi Lorem ispum st'}</Text>
-            <Image
-              source={require('../src/nyil2.png')}
-              style={{width:width/15, height:width/15}}/>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Tárgyi Lorem ispum st'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Egyéb tárgyi erőforrás'}</Text>
             <Image
               source={require('../src/nyil2.png')}
               style={{width:width/15, height:width/15}}/>
@@ -243,8 +251,8 @@ leirasokTipus(){
       <ScrollView>
 
       <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Szakértés és tanácsadás'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Helyszín, logisztika'}</Text>
             <Image
               source={require('../src/nyil3.png')}
               style={{width:width/15, height:width/15}}/>
@@ -253,67 +261,22 @@ leirasokTipus(){
           
 
            <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Ifjúsági szolgáltatás'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Szolgáltatás fiataloknak'}</Text>
             <Image
               source={require('../src/nyil3.png')}
               style={{width:width/15, height:width/15}}/>
           </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Helyszín'}</Text>
+          <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{color:'black', fontSize:20}}>{'Szolgáltatás szakembereknek'}</Text>
             <Image
               source={require('../src/nyil3.png')}
               style={{width:width/15, height:width/15}}/>
           </View>
           </TouchableOpacity>
 
-
-           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Rendezvény'}</Text>
-            <Image
-              source={require('../src/nyil3.png')}
-              style={{width:width/15, height:width/15}}/>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Projektmenedzsment'}</Text>
-            <Image
-              source={require('../src/nyil3.png')}
-              style={{width:width/15, height:width/15}}/>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Jármű'}</Text>
-            <Image
-              source={require('../src/nyil3.png')}
-              style={{width:width/15, height:width/15}}/>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'Egyéb'}</Text>
-            <Image
-              source={require('../src/nyil3.png')}
-              style={{width:width/15, height:width/15}}/>
-          </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
-          <View style={{height: height/10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{color:'black', fontSize:20}}>{'STB'}</Text>
-            <Image
-              source={require('../src/nyil3.png')}
-              style={{width:width/15, height:width/15}}/>
-          </View>
-          </TouchableOpacity>
           </ScrollView>
 
           )

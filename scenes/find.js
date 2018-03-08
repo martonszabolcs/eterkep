@@ -21,7 +21,7 @@ import {
   Easing,
   DrawerLayoutAndroid
 } from 'react-native';
-
+var _ = require('lodash')
 
 import {
   Router,
@@ -44,6 +44,8 @@ import SideBar from './sidebar';
     var {height, width} = Dimensions.get('window');
 
 var people = require('./people.json');
+var data = require('./data.json');
+
 
 
 
@@ -67,6 +69,7 @@ export default class Find extends Component<{}> {
       keywords: this.props.keywords,
       dataSource: people
       }
+      this.arrayholder = people ;
     this.dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1.guid != r2.guid});    
 
 
@@ -76,14 +79,31 @@ handleSwipeIndexChange (index) {
   };
 
     componentDidMount() {
-      
+      console.log(_.filter(people, { Keywords: 'Helyszín, logisztika' }));
+
    
     }
+
+    SearchFilterFunction(text){
+     keywords = this.state.keywords
+     const newData = this.arrayholder.filter(function(item){
+         const itemData = item.keywords
+         const textData = text
+         return itemData.indexOf(textData) > -1
+     })
+     this.setState({
+         dataSource: this.state.dataSource.cloneWithRows(newData),
+         text: text
+     })
+     console.log(this.state.dataSource)
+ }
+ 
 
 
 
 
        componentWillMount() {
+        this.SearchFilterFunction();
         console.log(this.state.canavasOpen);
        if (this.state.canavasOpen === 1){
         this.props.handleMenu();
