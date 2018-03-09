@@ -156,19 +156,21 @@ toggleModal(visible) {
       drawerWidth={width/2}
       drawerPosition={DrawerLayoutAndroid.positions.Left}
       renderNavigationView={() => navigationView}>
-      <Modal animationType = {"slide"} transparent = {false}
+     <Modal animationType = {"slide"} transparent = {false}
                visible = {this.state.modalVisible}
                onRequestClose = {() => { console.log("Modal has been closed.") } }>
                 
 
                <View style = {styles.modal}>
              
-               <View style = {{height:height/6, backgroundColor:'#2E348B', justifyContent:'center', alignItems:'center'}}>
-                <Text style = {styles.text}>HELP</Text>
-               </View>
 
-               <View style = {{flex:1, backgroundColor:'white', justifyContent:'center', alignItems:'center'}}>
-                <Text style={{color:'black'}}>HELP</Text>
+               <View style = {{flex:1, backgroundColor:'white', justifyContent:'space-between', alignItems:'center', marginTop:height/10}}>
+                <Text style={{color:'black', fontWeight:'bold', textAlign:'center', fontSize:30}}>Szeretettel üdvözlünk az E-Térkép első felhasználói, tesztelői között!</Text>
+                <Image
+              source={require('../src/homeman.png')}
+              style={{width:width/2, height:width/2}}/>
+                <Text style={{color:'black', fontWeight:'bold', fontSize:30}}> </Text>
+
                </View>
 
 
@@ -183,7 +185,6 @@ toggleModal(visible) {
                </View>
                </View>
             </Modal>
-
       
       <View style={{height:height/10, flexDirection:'row', marginTop:5, justifyContent:'space-between',alignItems:'center'}}>
       <TouchableOpacity onPress={ () => Actions.home()  }>
@@ -325,8 +326,6 @@ const styles = StyleSheet.create({
       flex:1,
       margin:10,
       borderRadius:10,
-      borderWidth:2,
-      borderColor:'black',
       backgroundColor: 'white',
     },
    text: {

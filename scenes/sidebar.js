@@ -68,7 +68,7 @@ export default class Sidebar extends Component<{}> {
     </View>
 
 
-     <TouchableOpacity  onPress={()=> Actions.adatlapok()}>
+     <TouchableOpacity  onPress={()=> Actions.adatlapok({keywords: 'Adatlapok'})}>
           <View style={{height: height/10, margin:10, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Adatlapok'}</Text>
           </View>

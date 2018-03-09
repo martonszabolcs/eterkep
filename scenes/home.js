@@ -19,7 +19,8 @@ import {
   AsyncStorage,
   TextInput,
   Easing,
-  DrawerLayoutAndroid
+  DrawerLayoutAndroid,
+  ViewPagerAndroid
 } from 'react-native';
 
 
@@ -57,7 +58,7 @@ export default class Home extends Component<{}> {
       menuOpen: false,
       modalVisible: false,
       index: 0,
-      canavasOpen: this.props.canavasOpen
+      canavasOpen: this.props.canavasOpen,
       }
 
     }
@@ -127,14 +128,33 @@ toggleModal(visible) {
                onRequestClose = {() => { console.log("Modal has been closed.") } }>
                 
 
-               <View style = {styles.modal}>
+               <ViewPagerAndroid
+              initialPage={this.state.index}
+              style={{flex:1}}
+              onPageSelected = {(e)=>{
+              console.log(e.nativeEvent.position);
+              }}
+            ref = {viewPager =>{this.viewPager = viewPager;}}>
+      <View style={styles.pageStyle} key="1">
+      
+      
+     
              
-               <View style = {{height:height/6, backgroundColor:'#2E348B', justifyContent:'center', alignItems:'center'}}>
-                <Text style = {styles.text}>HELP</Text>
-               </View>
 
-               <View style = {{flex:1, backgroundColor:'white', justifyContent:'center', alignItems:'center'}}>
-                <Text style={{color:'black'}}>HELP</Text>
+               <View style = {{flex:1, backgroundColor:'white', justifyContent:'space-between', alignItems:'center', marginTop:height/20}}>
+                <TouchableOpacity onPress={()=> this.viewPager.setPage(1)}>
+                   <View>
+                     <Image
+              source={require('../src/next.png')}
+              style={{width:width/5, height:width/5}}/>
+                    </View>
+                </TouchableOpacity>
+                <Text style={{color:'black', fontWeight:'bold', textAlign:'center', fontSize:24}}>Szeretettel üdvözlünk az E-Térkép első felhasználói, tesztelői között!</Text>
+                <Image
+              source={require('../src/homeman.png')}
+              style={{width:width/2, height:width/2}}/>
+                <Text style={{color:'black', fontWeight:'bold', fontSize:30}}> </Text>
+
                </View>
 
 
@@ -147,7 +167,114 @@ toggleModal(visible) {
             </View>
           </TouchableOpacity>
                </View>
+                </View>
+          <View style={styles.pageStyle} key="2">
+      
+     
+             
+
+               <View style = {{flex:1, backgroundColor:'white', justifyContent:'space-between', alignItems:'center', marginTop:height/20}}>
+               <TouchableOpacity onPress={()=> this.viewPager.setPage(2)}>
+                   <View>
+                     <Image
+              source={require('../src/next.png')}
+              style={{width:width/5, height:width/5}}/>
+                    </View>
+                </TouchableOpacity>
+                <Text style={{color:'black', textAlign:'center', fontSize:16}}>
+Az Erőforrástérkép az Ifjúsági Szolgáltatók Országos Szövetsége által létrehozott, az ifjúsági területen tevékenykedő szakemberek, szervezetek számára elérhető adatbázis, amely lehetővé teszi azon erőforrások megjelenítését, melyek a fenntartható és optimális kihasználtságot, költséghatékonyságot és profizmust biztosítják a megosztók munkája során. Az Erőforrástérkép az ISZOSZ mindenkori tagságának és a releváns partnereinek készült.
+                </Text>
+                
+                <Text style={{color:'black', fontSize:30}}> </Text>
+
                </View>
+
+
+
+               <View style = {{position:'absolute', bottom:height/20, left:10, right:10, justifyContent:'center', alignItems:'center'}}>
+               <TouchableOpacity onPress = {() => {
+                  this.toggleModal(!this.state.modalVisible)}}>
+            <View style={{height:40, backgroundColor:'#2E348B', width:width-40, justifyContent:'center', alignItems:'center', borderRadius:20}}>
+              <Text style={{color:'white'}}>{'Bezárás'}</Text>
+            </View>
+          </TouchableOpacity>
+               </View>
+                </View>
+
+                <View style={styles.pageStyle} key="3">
+      
+     
+             
+
+               <View style = {{flex:1, backgroundColor:'white', justifyContent:'space-between', alignItems:'center', marginTop:height/20}}>
+               <TouchableOpacity onPress={()=> this.viewPager.setPage(3)}>
+                   <View>
+                     <Image
+              source={require('../src/next.png')}
+              style={{width:width/5, height:width/5}}/>
+                    </View>
+                </TouchableOpacity>
+                <Text style={{color:'black', textAlign:'center', fontSize:16}}>
+Jelenleg az applikációnak egy teszt verziója érhető el. Három fő kategóriával találkozhatsz: humán és tárgyi erőforrások, valamint az előbbi kettőnél összetettebb, „csomagszerű” szolgáltatás kategóriákkal. A kereső jelenleg csak az E-térkép előbbi 3 fő kategóriájának alkategóriáira tud rákeresni, ám a közeljövőben tartalmi keresést is elérhetővé szeretnénk tenni.
+A megosztott tartalmak személyekhez kötött adatlapokon érhetőek el.
+A kategorizált adatbázis egyelőre még nem elérhető, tehát kérjük a lap tetején található keresőt, vagy a baloldalról nyíló menü adatlapok menüpontját használd a böngészéséhez.
+                </Text>
+                
+                <Text style={{color:'black', fontSize:30}}> </Text>
+
+               </View>
+
+
+
+               <View style = {{position:'absolute', bottom:height/20, left:10, right:10, justifyContent:'center', alignItems:'center'}}>
+               <TouchableOpacity onPress = {() => {
+                  this.toggleModal(!this.state.modalVisible)}}>
+            <View style={{height:40, backgroundColor:'#2E348B', width:width-40, justifyContent:'center', alignItems:'center', borderRadius:20}}>
+              <Text style={{color:'white'}}>{'Bezárás'}</Text>
+            </View>
+          </TouchableOpacity>
+               </View>
+                </View><View style={styles.pageStyle} key="4">
+      
+     
+             
+
+               <View style = {{flex:1, backgroundColor:'white', justifyContent:'space-between', alignItems:'center', marginTop:height/20}}>
+               <TouchableOpacity onPress={()=> this.viewPager.setPage(0)}>
+                   <View>
+                     <Image
+              source={require('../src/backs.png')}
+              style={{width:width/5, height:width/5}}/>
+                    </View>
+                </TouchableOpacity>
+                <Text style={{color:'black', textAlign:'center', fontSize:16}}>
+Az adatlapok jelenleg még általatok nem szerkeszthetőek, ezt az első fejlesztés során, egy PC-ről is elérhető admin felület létrehozásával szeretnénk elérni.
+Ahhoz, hogy fejleszteni tudjuk az applikációt, szükségünk van a te véleményedre, ötleteidre is, amiket a titkar@iszosz.org email címen tudsz megosztani velünk!
+Az APP első fejlesztése nyár elején várható!
+
+                </Text>
+                
+                <Text style={{color:'black', fontSize:30}}> </Text>
+
+               </View>
+
+
+
+               <View style = {{position:'absolute', bottom:height/20, left:10, right:10, justifyContent:'center', alignItems:'center'}}>
+               <TouchableOpacity onPress = {() => {
+                  this.toggleModal(!this.state.modalVisible)}}>
+            <View style={{height:40, backgroundColor:'#2E348B', width:width-40, justifyContent:'center', alignItems:'center', borderRadius:20}}>
+              <Text style={{color:'white'}}>{'Bezárás'}</Text>
+            </View>
+          </TouchableOpacity>
+               </View>
+                </View>
+
+
+
+
+
+            </ViewPagerAndroid>
             </Modal>
 
       
@@ -253,15 +380,19 @@ const styles = StyleSheet.create({
       flex:1,
       margin:10,
       borderRadius:10,
-      borderWidth:2,
-      borderColor:'black',
       backgroundColor: 'white',
     },
    text: {
       textAlign:'center',
-      color: 'white',
-      fontSize:40,
-       fontWeight: 'bold', 
-   }
+      color: 'black',
+      fontSize:20,
+   },
+   viewPager: {
+    flex: 1
+  },
+  pageStyle: {
+    alignItems: 'center',
+    padding: 20,
+  }
   })
   

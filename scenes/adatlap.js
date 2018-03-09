@@ -32,34 +32,19 @@ import {
 import SearchBar from 'react-native-searchbar';
 import Swiper from 'react-native-swiper';
 import SideBar from './sidebar';
+import {
+    CachedImage,
+    ImageCacheProvider
+} from 'react-native-cached-image';
+
+
+var people = require('./people.json');
+
 
     var {height, width} = Dimensions.get('window');
 
 //import {OffCanvas3D} from 'react-native-off-canvas-menu'
 
-const items = [
-  1337,
-  'janeway',
-  {
-    lots: 'of',
-    different: {
-      types: 0,
-      data: false,
-      that: {
-        can: {
-          be: {
-            quite: {
-              complex: {
-                hidden: [ 'gold!' ],
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-  [ 4, 2, 'tree' ],
-];
 
 
 const instructions = Platform.select({
@@ -77,8 +62,12 @@ export default class Bongeszes extends Component<{}> {
       menuOpen: false,
       modalVisible: false,
       index: 0,
-      tipus: this.props.tipus
+      tipus: this.props.tipus,
+      keywords: this.props.keywords
       }
+      this.arrayholder = people ;
+          this.dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1.guid != r2.guid});    
+
     }
 handleSwipeIndexChange (index) {
     this.setState({ index });
@@ -92,11 +81,31 @@ handleSwipeIndexChange (index) {
 
 
        componentWillMount() {
-        
+                this.SearchFilterFunction();
+
     }
     _handleResults(results) {
   //this.setState({ results });
 }
+
+SearchFilterFunction(text){
+      newData = []
+
+      console.log(people);
+      console.log(this.state.keywords);
+    for (var i = 0; i < people.length; i++) {
+    if (people[i].Keywords.indexOf(this.state.keywords) > -1){
+      console.log(people[i]);
+    newData.push(people[i]);
+
+    }
+    console.log(newData)
+    this.setState({
+         dataSource: newData,
+     })
+
+  }
+ }
 
 handleMenu() {
   const {menuOpen} = this.state
@@ -504,18 +513,21 @@ var navigationView = (
       drawerWidth={width/2}
       drawerPosition={DrawerLayoutAndroid.positions.Left}
       renderNavigationView={() => navigationView}>
-      <Modal animationType = {"slide"} transparent = {true}
+      <Modal animationType = {"slide"} transparent = {false}
                visible = {this.state.modalVisible}
                onRequestClose = {() => { console.log("Modal has been closed.") } }>
+                
 
                <View style = {styles.modal}>
              
-               <View style = {{height:height/6, backgroundColor:'#2E348B', justifyContent:'center', alignItems:'center'}}>
-                <Text style = {styles.text}>HELP</Text>
-               </View>
 
-               <View style = {{flex:1, backgroundColor:'white', justifyContent:'center', alignItems:'center'}}>
-                <Text style={{color:'black'}}>HELP</Text>
+               <View style = {{flex:1, backgroundColor:'white', justifyContent:'space-between', alignItems:'center', marginTop:height/10}}>
+                <Text style={{color:'black', fontWeight:'bold', textAlign:'center', fontSize:30}}>Szeretettel üdvözlünk az E-Térkép első felhasználói, tesztelői között!</Text>
+                <Image
+              source={require('../src/homeman.png')}
+              style={{width:width/2, height:width/2}}/>
+                <Text style={{color:'black', fontWeight:'bold', fontSize:30}}> </Text>
+
                </View>
 
 
@@ -533,7 +545,44 @@ var navigationView = (
 
          <View style={{height: height/6}}>
         {this.tipusok()}
+         <View style={{justifyContent:'center', alignItems:'center'}}>
+
+            <Text style={{color:'black', textAlign:'center', marginTop:20, fontWeight:'bold'}}>{this.state.keywords}</Text>
         </View>
+        </View>
+        <ScrollView  removeClippedSubviews={true} style={{backgroundColor:'transparent', marginTop:height/10}}>
+                <ListView
+            dataSource={this.dataSource.cloneWithRows(this.state.dataSource)}
+            enableEmptySections={true}
+            initialListSize={0}
+            contentContainerStyle={styles.list}
+            scrollEnabled={true}
+            pageSize={2}
+            renderRow={ (rowData, sectionID, rowID, highlightRow)=> (
+            <View numberOfLines={1} style={{backgroundColor:'transparent'}}>
+              <View style={{marginTop:10}}>
+              <TouchableOpacity onPress={() => {Actions.findreszletes({ user: rowData, keywords: this.state.keywords})}}>
+              <View style={{backgroundColor:"#D3D3D3", width:width/2-10, height:height/3, borderRadius:10}}>
+                <CachedImage
+                  resizeMode='cover'
+                  source={{uri:rowData.Fénykép}}
+                  style={{width:width/2-10, height:height/6, zIndex:100, borderRadius:10}}/>
+                <Text numberOfLines={2} style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:12}]}>
+                  {rowData.Név} - {rowData.Település}
+                </Text>
+                <Text numberOfLines={4} style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:12}]}>
+                  {rowData.Szakterület}
+                </Text>
+              </View>
+              </TouchableOpacity>
+
+              </View>
+              </View>
+              )}>
+          </ListView>
+              <View style={{height:100}}/>
+
+        </ScrollView> 
 
         
 
@@ -592,15 +641,18 @@ const styles = StyleSheet.create({
       flex:1,
       margin:10,
       borderRadius:10,
-      borderWidth:2,
-      borderColor:'black',
       backgroundColor: 'white',
-   },
+    },
    text: {
       textAlign:'center',
       color: 'white',
       fontSize:40,
       //fontWeight: 'bold', 
-   }
+   },
+   list: {
+   flexDirection: 'row',
+        flexWrap: 'wrap',
+    justifyContent:'space-around'
+  },
   })
   

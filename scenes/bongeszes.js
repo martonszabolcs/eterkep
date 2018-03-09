@@ -139,7 +139,7 @@ leirasokTipus(){
     return(
           <ScrollView>
 
-           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1, keywords:"Tréning, tanácsadás"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Tréning, tanácsadás'}</Text>
             <Image
@@ -147,7 +147,7 @@ leirasokTipus(){
               style={{width:width/15, height:width/15}}/>
           </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1, keywords:"Projektmenedzsment"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Projektmenedzsment'}</Text>
             <Image
@@ -157,7 +157,7 @@ leirasokTipus(){
           </TouchableOpacity>
 
 
-           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1, keywords:"Táborszervezés"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Táborszervezés'}</Text>
             <Image
@@ -166,7 +166,7 @@ leirasokTipus(){
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1, keywords:"Rendezvényszervezés"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Rendezvényszervezés'}</Text>
             <Image
@@ -175,7 +175,7 @@ leirasokTipus(){
           </View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1, keywords:"Nemzetközi"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Nemzetközi'}</Text>
             <Image
@@ -184,7 +184,7 @@ leirasokTipus(){
           </View>
           </TouchableOpacity> 
 
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1})}>
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 1, keywords:"Egyéb humán erőforrás"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Egyéb humán erőforrás'}</Text>
             <Image
@@ -204,7 +204,7 @@ leirasokTipus(){
     return(
           <ScrollView>
 
-      <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
+      <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2, keywords:"Elektronika"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Elektronika'}</Text>
             <Image
@@ -214,7 +214,7 @@ leirasokTipus(){
           </TouchableOpacity>
           
 
-           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
+           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2, keywords:"Bútor, irodai eszköz"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Bútor, irodai eszköz'}</Text>
             <Image
@@ -222,7 +222,7 @@ leirasokTipus(){
               style={{width:width/15, height:width/15}}/>
           </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2, keywords:"Játék, sport és tréning eszköz"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Játék, sport és tréning eszköz'}</Text>
             <Image
@@ -232,7 +232,7 @@ leirasokTipus(){
           </TouchableOpacity>
 
 
-           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2})}>
+           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 2, keywords:"Egyéb tárgyi erőforrás"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Egyéb tárgyi erőforrás'}</Text>
             <Image
@@ -250,7 +250,7 @@ leirasokTipus(){
     return(
       <ScrollView>
 
-      <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
+      <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3, keywords:"Helyszín, logisztika"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Helyszín, logisztika'}</Text>
             <Image
@@ -260,7 +260,7 @@ leirasokTipus(){
           </TouchableOpacity>
           
 
-           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
+           <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3, keywords:"Szolgáltatás fiataloknak"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Szolgáltatás fiataloknak'}</Text>
             <Image
@@ -268,7 +268,7 @@ leirasokTipus(){
               style={{width:width/15, height:width/15}}/>
           </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3})}>
+          <TouchableOpacity onPress={() => Actions.adatlap({tipus: 3, keywords:"Szolgáltatás szakembereknek"})}>
           <View style={{height: height/11, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{color:'black', fontSize:20}}>{'Szolgáltatás szakembereknek'}</Text>
             <Image
@@ -480,18 +480,21 @@ var navigationView = (
       drawerWidth={width/2}
       drawerPosition={DrawerLayoutAndroid.positions.Left}
       renderNavigationView={() => navigationView}>
-      <Modal animationType = {"slide"} transparent = {true}
+     <Modal animationType = {"slide"} transparent = {false}
                visible = {this.state.modalVisible}
                onRequestClose = {() => { console.log("Modal has been closed.") } }>
+                
 
                <View style = {styles.modal}>
              
-               <View style = {{height:height/6, backgroundColor:'#2E348B', justifyContent:'center', alignItems:'center'}}>
-                <Text style = {styles.text}>HELP</Text>
-               </View>
 
-               <View style = {{flex:1, backgroundColor:'white', justifyContent:'center', alignItems:'center'}}>
-                <Text style={{color:'black'}}>HELP</Text>
+               <View style = {{flex:1, backgroundColor:'white', justifyContent:'space-between', alignItems:'center', marginTop:height/10}}>
+                <Text style={{color:'black', fontWeight:'bold', textAlign:'center', fontSize:30}}>Szeretettel üdvözlünk az E-Térkép első felhasználói, tesztelői között!</Text>
+                <Image
+              source={require('../src/homeman.png')}
+              style={{width:width/2, height:width/2}}/>
+                <Text style={{color:'black', fontWeight:'bold', fontSize:30}}> </Text>
+
                </View>
 
 
@@ -575,14 +578,12 @@ const styles = StyleSheet.create({
     position:'absolute',
     resizeMode: 'cover', // or 'stretch'
   },
-  modal: {
+ modal: {
       flex:1,
       margin:10,
       borderRadius:10,
-      borderWidth:2,
-      borderColor:'black',
       backgroundColor: 'white',
-   },
+    },
    text: {
       textAlign:'center',
       color: 'white',
