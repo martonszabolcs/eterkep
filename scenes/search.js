@@ -87,7 +87,7 @@ export default class Search extends Component {
  
           enableEmptySections={true}
  
-          style={{marginTop: 10}}
+          style={{marginTop: 15, backgroundColor:'white', borderRadius:10}}
  
         />
         )

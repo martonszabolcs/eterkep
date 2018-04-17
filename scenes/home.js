@@ -29,6 +29,8 @@ import {
   Scene,
   Actions
 } from 'react-native-router-flux';
+import api from '../utilities/api'
+
 
 
 import SearchBar from 'react-native-searchbar';
@@ -59,17 +61,31 @@ export default class Home extends Component<{}> {
       modalVisible: false,
       index: 0,
       canavasOpen: this.props.canavasOpen,
+      token: this.props.token,
+      userName: this.props.userName,
+      lista:[]
       }
+      this.dataSource = new ListView.DataSource({rowHasChanged:(r1,r2) => r1.guid != r2.guid});    
+
 
     }
 handleSwipeIndexChange (index) {
     this.setState({ index });
   };
 
+  
+
     componentDidMount() {
+      api.lista().then((lista) => {
+
+      this.setState({
+        lista: lista
+      })
+    })
       
    
     }
+
 
 
 
@@ -278,16 +294,60 @@ Az APP első fejlesztése nyár elején várható!
             </Modal>
 
       
-      <View style={{flex:1}}>
+      <View style={{height:height/2.5, borderRadius:10, backgroundColor:"#189375", justifyContent:'center', alignItems:'center'}}>
+        <View style={{ width:width, padding:10, backgroundColor:'gray', justifyContent:'center', alignItems:'center'}}>
+              <Text style={{color:'white', fontSize:20}}>{'Üdvözlünk '+this.state.userName+"!"}</Text>
+
+        </View>
       
         <Search/>
+
+
+        <View style={{ top:height/2.5/2, position:'absolute', zIndex:-10, justifyContent:'center', alignItems:'center'}}>
+              <TouchableOpacity >
+
+        <Image
+              source={require('../src/plus.png')}
+              style={{width:width/6, height:width/6}}/>
+              </TouchableOpacity>
+
+        <Text style={{color:'white', fontSize:16}}>{'Új jegyzet hozzáadása'}</Text>
+
+        </View>
         </View>
 
 
-      <View style={{flex:2, flexDirection:'row', justifyContent:'space-around'}}>
-        <Image
-              source={require('../src/homeman.png')}
-              style={{width:width/2, height:width/2}}/>
+      <View style={{flex:1, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+        <ScrollView  removeClippedSubviews={true} style={{backgroundColor:'transparent'}}>
+                <ListView
+            dataSource={this.dataSource.cloneWithRows(this.state.lista)}
+            enableEmptySections={true}
+            initialListSize={0}
+            contentContainerStyle={styles.list}
+            scrollEnabled={true}
+            pageSize={2}
+            renderRow={ (rowData, sectionID, rowID, highlightRow)=> (
+            <View numberOfLines={1} style={{backgroundColor:'transparent'}}>
+              <View style={{marginTop:10}}>
+              <TouchableOpacity onPress={() => {Actions.findreszletes({ user: rowData, keywords: this.state.keywords})}}>
+              <View style={{backgroundColor:"#D3D3D3", width:width-10, height:100, borderRadius:10}}>
+                
+                <Text numberOfLines={2} style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:12}]}>
+                  {rowData.id} - {rowData.title}
+                </Text>
+                <Text numberOfLines={4} style={[styles.cim, {color:'black', marginLeft:5, marginTop:5, marginRight:5, textAlign:'center', fontSize:12}]}>
+                  {rowData.content}
+                </Text>
+              </View>
+              </TouchableOpacity>
+
+              </View>
+              </View>
+              )}>
+          </ListView>
+              <View style={{height:100}}/>
+
+        </ScrollView> 
       </View>
       
     </DrawerLayoutAndroid>
@@ -393,6 +453,11 @@ const styles = StyleSheet.create({
   pageStyle: {
     alignItems: 'center',
     padding: 20,
-  }
+  },
+  list: {
+   flexDirection: 'row',
+        flexWrap: 'wrap',
+    justifyContent:'space-around'
+  },
   })
   

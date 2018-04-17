@@ -95,6 +95,7 @@ export default class Flux extends Component {
    }
 
   render() {
+    console.log('render')
     // Lekerekitett sarkok pozicioja
         var {height, width} = Dimensions.get('window');
         var cornerLeft = width - 10;  // 10 is the width/height of the corner

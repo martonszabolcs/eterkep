@@ -21,6 +21,8 @@ import {
   Alert,
   Animated
 } from 'react-native';
+const base64 = require('base-64');
+const utf8 = require('utf8');
 
 
 import {
@@ -47,6 +49,53 @@ export default class Login extends Component<{}> {
 
       }
     }
+
+    login = async () => {
+      var data = "Basic "+base64.encode("admin@admin.hu:123456");
+
+      console.log(data)
+
+    var path = "https://dry-mountain-15425.herokuapp.com/auth";
+
+     fetch(path, {  
+ headers: new Headers({
+     'Authorization': data, 
+     'Content-Type': 'application/x-www-form-urlencoded'
+   }), 
+  method: 'POST',
+  
+ body: "access_token=e0cAiR20cMQMpSpV1z1DCuLFS3HcArbx",
+
+
+})
+      .then((response) => response.json())
+      .then((responseData) => {
+
+
+      console.log('responseData');
+      console.log(responseData);
+
+
+      Actions.home({
+        userName: responseData.user.name,
+        token: responseData.token
+      });
+     
+
+      
+
+ 
+    })
+      .catch((error) => {
+      console.log(error)
+      Alert.alert(
+  'Hiba történt!',
+  'Kérjük próbálkozzon újra',
+    )
+    })
+  }
+
+  
 
 
     componentDidMount() {
@@ -111,7 +160,21 @@ export default class Login extends Component<{}> {
           <View>
             <View>
               <Text style={{fontSize:12, color:'gray'}}>
-                {'JELSZÓ (jelenleg amit most be kell irni: 12345)'}
+                {'E-mail'}
+              </Text>
+              <TextInput
+                ref='SecondInput'
+                returnKeyType='go'
+                secureTextEntry={true}
+                underlineColorAndroid='rgba(0,0,0,0)'
+                style={{height: 40}}
+                onChangeText={(password) => this.setState({password})}
+                value={this.state.password}/>
+          <View style={{height:1, paddingTop:0.3, backgroundColor:'gray', top:-10}}/> 
+            </View>
+            <View>
+              <Text style={{fontSize:12, color:'gray'}}>
+                {'Jelszó'}
               </Text>
               <TextInput
                 ref='SecondInput'
@@ -126,7 +189,7 @@ export default class Login extends Component<{}> {
         </View>
         
         <View style={{justifyContent:'center', alignItems:'center', marginTop:10}}>
-          <TouchableOpacity onPress={ () => this.validate() }>
+          <TouchableOpacity onPress={ () => this.login() }>
             <View style={{height:40, backgroundColor:'#2E348B', width:width-40, justifyContent:'center', alignItems:'center', borderRadius:20}}>
               <Text style={{color:'white'}}>{'Bejelentkezés'}</Text>
             </View>
